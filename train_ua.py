@@ -69,7 +69,7 @@ if args.tensorboard:
     from tensorboardX import SummaryWriter
     if not os.path.exists(config['log_folder']):
         os.mkdir(config['log_folder'])
-    writer = SummaryWriter(log_dir=config['log_folder'])
+    writer = SummaryWriter(logdir=config['log_folder'])
 
 sst_net = build_sst('train')
 net = sst_net
