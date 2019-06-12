@@ -78,7 +78,7 @@ if args.cuda:
     net = torch.nn.DataParallel(sst_net)
     cudnn.benchmark = True
 
-if args.resume:
+if args.resume and args.resume not 'None':
     print('Resuming training, loading {}...'.format(args.resume))
     sst_net.load_weights(args.resume)
 else:
