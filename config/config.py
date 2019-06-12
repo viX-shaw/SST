@@ -179,7 +179,7 @@ def init_train_ua():
 
     config['base_net_folder'] = '/media/ssm/seagate/weights/UA-DETRAC/vgg16_reducedfc.pth'
     # config['log_folder'] = '/media/ssm/seagate/weights/UA-DETRAC/0621-0728-E25-M80-G30-log'
-    config['log_folder'] = '/content/log
+    config['log_folder'] = '/content/log'
     config['save_folder'] = '/media/ssm/seagate/weights/UA-DETRAC/0621-0728-E25-M80-G30-weight'
     # config['save_images_folder'] = '/media/ssm/seagate/weights/UA-DETRAC/0621-0728-E25-M80-G30-images'
     config['save_images_folder'] = '/content/output_images
