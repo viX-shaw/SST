@@ -192,6 +192,8 @@ def train():
         # forward
         t0 = time.time()
         out = net(img_pre, img_next, boxes_pre, boxes_next, valid_pre, valid_next)
+        print('****Allocated:', round(torch.cuda.memory_allocated(0)/1024**3,1), 'GB')
+        print('****Cached:   ', round(torch.cuda.memory_cached(0)/1024**3,1), 'GB')
 
         optimizer.zero_grad()
         loss_pre, loss_next, loss_similarity, loss, accuracy_pre, accuracy_next, accuracy, predict_indexes = criterion(out, labels, valid_pre, valid_next)
