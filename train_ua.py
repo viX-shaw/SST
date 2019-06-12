@@ -126,6 +126,8 @@ def train():
                              ))
 
     epoch_size = len(dataset) // args.batch_size
+    print('****Allocated:', round(torch.cuda.memory_allocated(0)/1024**3,1), 'GB')
+    print('****Cached:   ', round(torch.cuda.memory_cached(0)/1024**3,1), 'GB')
     print('Training SST on', dataset.dataset_name)
     step_index = 0
 
@@ -235,6 +237,7 @@ def train():
                        os.path.join(
                            args.save_folder,
                            'sst300_0712_' + repr(iteration) + '.pth'))
+        del out
 
     torch.save(sst_net.state_dict(), args.save_folder + '' + args.version + '.pth')
 
