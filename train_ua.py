@@ -164,9 +164,10 @@ def train():
             img_next = Variable(img_next.cuda())
             boxes_pre = Variable(boxes_pre.cuda())
             boxes_next = Variable(boxes_next.cuda())
-            valid_pre = Variable(valid_pre.cuda(), volatile=True)
-            valid_next = Variable(valid_next.cuda(), volatile=True)
-            labels = Variable(labels.cuda(), volatile=True)
+            with torch.no_grad():
+                valid_pre = Variable(valid_pre.cuda())
+                valid_next = Variable(valid_next.cuda())
+                labels = Variable(labels.cuda())
 
         else:
             img_pre = Variable(img_pre)
