@@ -188,7 +188,7 @@ def init_train_ua():
         'ua_detection_root'] = '/media/ssm/seagate/dataset/UA-DETRAC/gt'
     config[
         'ua_ignore_root'] = '/media/ssm/seagate/dataset/UA-DETRAC/DETRAC-MOT-toolkit/evaluation/igrs'
-    config['resume'] = '/media/ssm/seagate/weights/UA-DETRAC/0621-0728-E25-M80-G30-weight/sst300_0712_62580.pth'
+    config['resume'] = None
     config['start_iter'] = 0
     config['iteration_epoch_num'] = 10
     config['iterations'] = config['start_iter'] + config['epoch_size'] * config['iteration_epoch_num'] + 50
