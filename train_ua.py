@@ -130,6 +130,14 @@ def train():
     step_index = 0
 
     batch_iterator = None
+    img_pre = None
+    img_next = None
+    boxes_pre = None
+    boxes_next = None
+    valid_pre = None
+    valid_next = None
+    labels = None
+    out = None
 
     data_loader = data.DataLoader(dataset, batch_size,
                                   num_workers=args.num_workers,
