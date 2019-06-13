@@ -132,13 +132,13 @@ def train():
     step_index = 0
 
     batch_iterator = None
-    img_pr = torch.FloatTensor(1).cuda()
-    img_nex = torch.FloatTensor(1).cuda()
-    boxes_pr = torch.FloatTensor(1).cuda()
-    boxes_nex = torch.FloatTensor(1).cuda()
-    valid_pr = torch.FloatTensor(1).cuda()
-    valid_nex = torch.FloatTensor(1).cuda()
-    label = torch.FloatTensor(1).cuda()
+    img_pr = torch.FloatTensor(1).cuda().data
+    img_nex = torch.FloatTensor(1).cuda().data
+    boxes_pr = torch.FloatTensor(1).cuda().data
+    boxes_nex = torch.FloatTensor(1).cuda().data
+    valid_pr = torch.FloatTensor(1).cuda().data
+    valid_nex = torch.FloatTensor(1).cuda().data
+    label = torch.FloatTensor(1).cuda().data
 
     data_loader = data.DataLoader(dataset, batch_size,
                                   num_workers=args.num_workers,
@@ -188,14 +188,14 @@ def train():
         #     labels = Variable(labels, volatile=True)
 
         if args.cuda:
-            img_pr.data.resize_(img_pre.shape).copy_(img_pre)
-            img_nex.data.resize_(img_next.shape).copy_(img_next)
-            boxes_pre.data.resize_(boxes_pre.shape).copy_(boxes_pre)
-            boxes_next.data.resize_(boxes_next.shape).copy_(boxes_next)
+            img_pr.resize_(img_pre.shape).copy_(img_pre)
+            img_nex.resize_(img_next.shape).copy_(img_next)
+            boxes_pre.resize_(boxes_pre.shape).copy_(boxes_pre)
+            boxes_next.resize_(boxes_next.shape).copy_(boxes_next)
             with torch.no_grad():
-                valid_pr.data.resize_(valid_pre.shape).copy_(valid_pre)
-                valid_nex.data.resize_(valid_next.shape).copy_(valid_next)
-                label.data.resize_(labels.shape).copy_(labels)
+                valid_pr.resize_(valid_pre.shape).copy_(valid_pre)
+                valid_nex.resize_(valid_next.shape).copy_(valid_next)
+                label.resize_(labels.shape).copy_(labels)
 
 
         # forward
