@@ -218,7 +218,7 @@ def train():
 
         if iteration % 10 == 0:
             print('Timer: %.4f sec.' % (t1 - t0))
-            print('iter ' + repr(iteration) + ', ' + repr(epoch_size) + ' || epoch: %.4f ' % (iteration/(float)(epoch_size)) + ' || Loss: %.4f ||' % (loss.data[0]), end=' ')
+            print('iter ' + repr(iteration) + ', ' + repr(epoch_size) + ' || epoch: %.4f ' % (iteration/(float)(epoch_size)) + ' || Loss: %.4f ||' % (loss.item()), end=' ')
 
         if args.tensorboard:
             if len(all_epoch_loss) > 30:
