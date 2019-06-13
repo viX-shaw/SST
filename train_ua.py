@@ -132,13 +132,13 @@ def train():
     step_index = 0
 
     batch_iterator = None
-    img_pr = torch.FloatTensor(1).cuda().data
-    img_nex = torch.FloatTensor(1).cuda().data
-    boxes_pr = torch.FloatTensor(1).cuda().data
-    boxes_nex = torch.FloatTensor(1).cuda().data
-    valid_pr = torch.FloatTensor(1).cuda().data
-    valid_nex = torch.FloatTensor(1).cuda().data
-    label = torch.FloatTensor(1).cuda().data
+    img_pr = torch.FloatTensor(1).cuda()
+    img_nex = torch.FloatTensor(1).cuda()
+    boxes_pr = torch.FloatTensor(1).cuda()
+    boxes_nex = torch.FloatTensor(1).cuda()
+    valid_pr = torch.FloatTensor(1).cuda()
+    valid_nex = torch.FloatTensor(1).cuda()
+    label = torch.FloatTensor(1).cuda()
 
     data_loader = data.DataLoader(dataset, batch_size,
                                   num_workers=args.num_workers,
