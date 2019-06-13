@@ -154,7 +154,7 @@ def train():
 
     # start training
     for iteration in range(args.start_iter, max_iter):
-        print("Iteration--{}/{}".format(iteration, max_iter))
+        # print("Iteration--{}/{}".format(iteration, max_iter))
         if (not batch_iterator) or (iteration % epoch_size == 0):
             # create batch iterator
             batch_iterator = iter(data_loader)
@@ -168,8 +168,8 @@ def train():
         # load train data
         img_pre, img_next, boxes_pre, boxes_next, labels, valid_pre, valid_next=\
             next(batch_iterator)
-        print('**Allocated:', round(torch.cuda.memory_allocated(0)/1024**3,1), 'GB')
-        print('**Cached:   ', round(torch.cuda.memory_cached(0)/1024**3,1), 'GB')
+        # print('**Allocated:', round(torch.cuda.memory_allocated(0)/1024**3,1), 'GB')
+        # print('**Cached:   ', round(torch.cuda.memory_cached(0)/1024**3,1), 'GB')
 
         if args.cuda:
             img_pre = Variable(img_pre.cuda())
@@ -204,8 +204,8 @@ def train():
         # forward
         t0 = time.time()
         out = net(img_pre, img_next, boxes_pre, boxes_next, valid_pre, valid_next)
-        print('****Allocated:', round(torch.cuda.memory_allocated(0)/1024**3,1), 'GB')
-        print('****Cached:   ', round(torch.cuda.memory_cached(0)/1024**3,1), 'GB')
+        # print('****Allocated:', round(torch.cuda.memory_allocated(0)/1024**3,1), 'GB')
+        # print('****Cached:   ', round(torch.cuda.memory_cached(0)/1024**3,1), 'GB')
 
         optimizer.zero_grad()
         loss_pre, loss_next, loss_similarity, loss, accuracy_pre, accuracy_next, accuracy, predict_indexes = criterion(out, labels, valid_pre, valid_next)
@@ -216,7 +216,7 @@ def train():
 
         all_epoch_loss += [loss.data.cpu()]
 
-        if iteration % 10 == 0:
+        if iteration % 50 == 0:
             print('Timer: %.4f sec.' % (t1 - t0))
             print('iter ' + repr(iteration) + ', ' + repr(epoch_size) + ' || epoch: %.4f ' % (iteration/(float)(epoch_size)) + ' || Loss: %.4f ||' % (loss.item()), end=' ')
 
