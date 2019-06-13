@@ -175,17 +175,20 @@ class SST(nn.Module):
         return y
 
     def forward_vgg(self, x, vgg, sources):
-        for k in range(16):
-            x = vgg[k](x)
-        sources.append(x)
+        try:
+            for k in range(16):
+                x = vgg[k](x)
+            sources.append(x)
 
-        for k in range(16, 23):
-            x = vgg[k](x)
-        sources.append(x)
+            for k in range(16, 23):
+                x = vgg[k](x)
+            sources.append(x)
 
-        for k in range(23, 35):
-            x = vgg[k](x)
-        sources.append(x)
+            for k in range(23, 35):
+                x = vgg[k](x)
+            sources.append(x)
+        except Exception as e:
+            print("Failed at allocating memory for layer", k)
         return x
 
     def forward_extras(self, x, extras, sources):
