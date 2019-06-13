@@ -216,7 +216,7 @@ def train():
 
         all_epoch_loss += [loss.data.cpu()]
 
-        if iteration % 50 == 0:
+        if iteration % 30 == 0:
             print('Timer: %.4f sec.' % (t1 - t0))
             print('iter ' + repr(iteration) + ', ' + repr(epoch_size) + ' || epoch: %.4f ' % (iteration/(float)(epoch_size)) + ' || Loss: %.4f ||' % (loss.item()), end=' ')
 
