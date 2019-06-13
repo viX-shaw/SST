@@ -201,7 +201,8 @@ def train():
 
         # forward
         t0 = time.time()
-        out = net(img_pre, img_next, boxes_pre, boxes_next, valid_pre, valid_next)
+        with torch.no_grad():
+            out = net(img_pre, img_next, boxes_pre, boxes_next, valid_pre, valid_next)
         print('****Allocated:', round(torch.cuda.memory_allocated(0)/1024**3,1), 'GB')
         print('****Cached:   ', round(torch.cuda.memory_cached(0)/1024**3,1), 'GB')
 
