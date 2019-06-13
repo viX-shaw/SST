@@ -44,23 +44,20 @@ class SSTLoss(nn.Module):
         target_num_next = target_next.sum()
         target_num_union = target_union.sum()
         #todo: remove the last row negative effect
-        # if int(target_num_pre.data[0]):
-        if int(target_num_pre.item()):
+        if int(target_num_pre.data[0]):
             loss_pre = - (target_pre * torch.log(input_pre)).sum() / target_num_pre
         else:
             loss_pre = - (target_pre * torch.log(input_pre)).sum()
-        # if int(target_num_next.data[0]):
-        if int(target_num_next.item()):
+        if int(target_num_next.data[0]):
             loss_next = - (target_next * torch.log(input_next)).sum() / target_num_next
         else:
             loss_next = - (target_next * torch.log(input_next)).sum()
-        # if int(target_num_pre.data[0]) and int(target_num_next.data[0]):
-        if int(target_num_pre.item()) and int(target_num_next.item()):
+        if int(target_num_pre.data[0]) and int(target_num_next.data[0]):
             loss = -(target_pre * torch.log(input_all)).sum() / target_num_pre
         else:
             loss = -(target_pre * torch.log(input_all)).sum()
 
-        if int(target_num_union.item()):
+        if int(target_num_union.data[0]):
             loss_similarity = (target_union * (torch.abs((1-input_pre) - (1-input_next)))).sum() / target_num
         else:
             loss_similarity = (target_union * (torch.abs((1-input_pre) - (1-input_next)))).sum()
@@ -69,9 +66,7 @@ class SSTLoss(nn.Module):
         indexes_ = indexes_[:, :, :-1]
         _, indexes_pre = input_all.max(3)
         indexes_pre = indexes_pre[:, :, :-1]
-        # mask_pre_num = mask_pre[:, :, :-1].sum().data[0]
-        mask_pre_num = mask_pre[:, :, :-1].sum().item()
-
+        mask_pre_num = mask_pre[:, :, :-1].sum().data[0]
         if mask_pre_num:
             accuracy_pre = (indexes_pre[mask_pre[:, :, :-1]] == indexes_[mask_pre[:,:, :-1]]).float().sum() / mask_pre_num
         else:
@@ -81,9 +76,7 @@ class SSTLoss(nn.Module):
         indexes_ = indexes_[:, :, :-1]
         _, indexes_next = input_next.max(2)
         indexes_next = indexes_next[:, :, :-1]
-        # mask_next_num = mask_next[:, :, :-1].sum().data[0]
-        mask_next_num = mask_next[:, :, :-1].sum().item()
-
+        mask_next_num = mask_next[:, :, :-1].sum().data[0]
         if mask_next_num:
             accuracy_next = (indexes_next[mask_next[:, :, :-1]] == indexes_[mask_next[:, :, :-1]]).float().sum() / mask_next_num
         else:

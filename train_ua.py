@@ -126,8 +126,6 @@ def train():
                              ))
 
     epoch_size = len(dataset) // args.batch_size
-    print('****Allocated:', round(torch.cuda.memory_allocated(0)/1024**3,1), 'GB')
-    print('****Cached:   ', round(torch.cuda.memory_cached(0)/1024**3,1), 'GB')
     print('Training SST on', dataset.dataset_name)
     step_index = 0
 
@@ -145,6 +143,10 @@ def train():
                                   shuffle=True,
                                   collate_fn=collate_fn,
                                   pin_memory=False)
+
+    
+    print('**Allocated:', round(torch.cuda.memory_allocated(0)/1024**3,1), 'GB')
+    print('**Cached:   ', round(torch.cuda.memory_cached(0)/1024**3,1), 'GB')
 
     # adjust the learning rate
     print('adjust the learning rate')
@@ -201,8 +203,7 @@ def train():
 
         # forward
         t0 = time.time()
-        with torch.no_grad():
-            out = net(img_pre, img_next, boxes_pre, boxes_next, valid_pre, valid_next)
+        out = net(img_pre, img_next, boxes_pre, boxes_next, valid_pre, valid_next)
         print('****Allocated:', round(torch.cuda.memory_allocated(0)/1024**3,1), 'GB')
         print('****Cached:   ', round(torch.cuda.memory_cached(0)/1024**3,1), 'GB')
 
