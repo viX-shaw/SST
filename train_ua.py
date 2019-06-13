@@ -144,9 +144,6 @@ def train():
                                   collate_fn=collate_fn,
                                   pin_memory=False)
 
-    
-    print('**Allocated:', round(torch.cuda.memory_allocated(0)/1024**3,1), 'GB')
-    print('**Cached:   ', round(torch.cuda.memory_cached(0)/1024**3,1), 'GB')
 
     # adjust the learning rate
     print('adjust the learning rate')
@@ -162,6 +159,7 @@ def train():
             # create batch iterator
             batch_iterator = iter(data_loader)
             all_epoch_loss = []
+    
 
         if iteration in stepvalues:
             step_index += 1
@@ -170,6 +168,8 @@ def train():
         # load train data
         img_pre, img_next, boxes_pre, boxes_next, labels, valid_pre, valid_next=\
             next(batch_iterator)
+        print('**Allocated:', round(torch.cuda.memory_allocated(0)/1024**3,1), 'GB')
+        print('**Cached:   ', round(torch.cuda.memory_cached(0)/1024**3,1), 'GB')
 
         if args.cuda:
             img_pre = Variable(img_pre.cuda())
