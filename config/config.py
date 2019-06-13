@@ -15,7 +15,7 @@ config = {
     'resume': None,
     'start_iter': 55050,
     'cuda': True,
-    'batch_size': 8,
+    'batch_size': 4,
     'num_workers': 16,
     'iterations': 85050,
     'learning_rate': 5e-3,

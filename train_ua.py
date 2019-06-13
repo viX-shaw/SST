@@ -132,13 +132,13 @@ def train():
     step_index = 0
 
     batch_iterator = None
-    img_pr = torch.FloatTensor(1).cuda()
-    img_nex = torch.FloatTensor(1).cuda()
-    boxes_pr = torch.FloatTensor(1).cuda()
-    boxes_nex = torch.FloatTensor(1).cuda()
-    valid_pr = torch.FloatTensor(1).cuda()
-    valid_nex = torch.FloatTensor(1).cuda()
-    label = torch.FloatTensor(1).cuda()
+    # img_pr = torch.FloatTensor(1).cuda()
+    # img_nex = torch.FloatTensor(1).cuda()
+    # boxes_pr = torch.FloatTensor(1).cuda()
+    # boxes_nex = torch.FloatTensor(1).cuda()
+    # valid_pr = torch.FloatTensor(1).cuda()
+    # valid_nex = torch.FloatTensor(1).cuda()
+    # label = torch.FloatTensor(1).cuda()
 
     data_loader = data.DataLoader(dataset, batch_size,
                                   num_workers=args.num_workers,
@@ -169,34 +169,34 @@ def train():
         img_pre, img_next, boxes_pre, boxes_next, labels, valid_pre, valid_next=\
             next(batch_iterator)
 
-        # if args.cuda:
-        #     img_pre = Variable(img_pre.cuda())
-        #     img_next = Variable(img_next.cuda())
-        #     boxes_pre = Variable(boxes_pre.cuda())
-        #     boxes_next = Variable(boxes_next.cuda())
-        #     with torch.no_grad():
-        #         valid_pre = Variable(valid_pre.cuda())
-        #         valid_next = Variable(valid_next.cuda())
-        #         labels = Variable(labels.cuda())
-
-        # else:
-        #     img_pre = Variable(img_pre)
-        #     img_next = Variable(img_next)
-        #     boxes_pre = Variable(boxes_pre)
-        #     boxes_next = Variable(boxes_next)
-        #     valid_pre = Variable(valid_pre)
-        #     valid_next = Variable(valid_next)
-        #     labels = Variable(labels, volatile=True)
-
         if args.cuda:
-            img_pr.resize_(img_pre.shape).copy_(img_pre)
-            img_nex.resize_(img_next.shape).copy_(img_next)
-            boxes_pre.resize_(boxes_pre.shape).copy_(boxes_pre)
-            boxes_next.resize_(boxes_next.shape).copy_(boxes_next)
+            img_pre = Variable(img_pre.cuda())
+            img_next = Variable(img_next.cuda())
+            boxes_pre = Variable(boxes_pre.cuda())
+            boxes_next = Variable(boxes_next.cuda())
             with torch.no_grad():
-                valid_pr.resize_(valid_pre.shape).copy_(valid_pre)
-                valid_nex.resize_(valid_next.shape).copy_(valid_next)
-                label.resize_(labels.shape).copy_(labels)
+                valid_pre = Variable(valid_pre.cuda())
+                valid_next = Variable(valid_next.cuda())
+                labels = Variable(labels.cuda())
+
+        else:
+            img_pre = Variable(img_pre)
+            img_next = Variable(img_next)
+            boxes_pre = Variable(boxes_pre)
+            boxes_next = Variable(boxes_next)
+            valid_pre = Variable(valid_pre)
+            valid_next = Variable(valid_next)
+            labels = Variable(labels, volatile=True)
+
+        # if args.cuda:
+        #     img_pr.resize_(img_pre.shape).copy_(img_pre)
+        #     img_nex.resize_(img_next.shape).copy_(img_next)
+        #     boxes_pre.resize_(boxes_pre.shape).copy_(boxes_pre)
+        #     boxes_next.resize_(boxes_next.shape).copy_(boxes_next)
+        #     with torch.no_grad():
+        #         valid_pr.resize_(valid_pre.shape).copy_(valid_pre)
+        #         valid_nex.resize_(valid_next.shape).copy_(valid_next)
+        #         label.resize_(labels.shape).copy_(labels)
 
 
         # forward
