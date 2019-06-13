@@ -155,6 +155,7 @@ def train():
 
     # start training
     for iteration in range(args.start_iter, max_iter):
+        print("Iteration--{}/{}".format(iteration, max_iter))
         if (not batch_iterator) or (iteration % epoch_size == 0):
             # create batch iterator
             batch_iterator = iter(data_loader)
