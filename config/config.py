@@ -192,7 +192,7 @@ def init_train_ua():
     config['start_iter'] = 0
     config['iteration_epoch_num'] = 10
     config['iterations'] = config['start_iter'] + config['epoch_size'] * config['iteration_epoch_num'] + 50
-    config['batch_size'] = 8
+    config['batch_size'] = 1
     config['learning_rate'] = 1e-3
     config['learning_rate_decay_by_epoch'] = (5, 7, 8, 9)
     config['save_weight_every_epoch_num'] = 1
