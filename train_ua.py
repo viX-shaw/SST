@@ -216,7 +216,7 @@ def train():
 
         all_epoch_loss += [loss.data.cpu()]
 
-        if iteration % 30 == 0:
+        if iteration % 50 == 0:
             print('Timer: %.4f sec.' % (t1 - t0))
             print('iter ' + repr(iteration) + ', ' + repr(epoch_size) + ' || epoch: %.4f ' % (iteration/(float)(epoch_size)) + ' || Loss: %.4f ||' % (loss.item()), end=' ')
 
@@ -245,7 +245,7 @@ def train():
 
                 writer.add_image('WithLabel/ImageResult', vutils.make_grid(result_image, nrow=2, normalize=True, scale_each=True), iteration)
 
-        if iteration % 10== 0:
+        if iteration % 2000== 0:
             print('Saving state, iter:', iteration)
             torch.save(sst_net.state_dict(), "/content/sst_300_0712_{}.pth".format(iteration))
                     #    os.path.join(
@@ -253,7 +253,7 @@ def train():
                     #        'sst300_0712_' + repr(iteration) + '.pth'))
         # del out
 
-    torch.save(sst_net.state_dict(), args.save_folder + '' + args.version + '.pth')
+    torch.save(sst_net.state_dict(), "/content/sst_300_0712_{}ver.pth".format(args.version))
 
 
 def adjust_learning_rate(optimizer, gamma, step):
