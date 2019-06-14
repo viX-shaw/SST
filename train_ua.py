@@ -245,13 +245,13 @@ def train():
 
                 writer.add_image('WithLabel/ImageResult', vutils.make_grid(result_image, nrow=2, normalize=True, scale_each=True), iteration)
 
-        if iteration % save_weights_iteration == 0:
+        if iteration % 10== 0:
             print('Saving state, iter:', iteration)
-            torch.save(sst_net.state_dict(),
-                       os.path.join(
-                           args.save_folder,
-                           'sst300_0712_' + repr(iteration) + '.pth'))
-        del out
+            torch.save(sst_net.state_dict(), "/content/sst_300_0712_{}.pth".format(iteration))
+                    #    os.path.join(
+                    #        args.save_folder,
+                    #        'sst300_0712_' + repr(iteration) + '.pth'))
+        # del out
 
     torch.save(sst_net.state_dict(), args.save_folder + '' + args.version + '.pth')
 
