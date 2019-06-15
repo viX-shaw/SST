@@ -86,7 +86,7 @@ def test(choice=None, sequence_list=None):
         # detection_file = all_detection_files[j]
 
         image_folder = image_fol+"/img1"
-        detection_file = image_fol+"/det"
+        detection_file = image_fol+"/det/det.txt"
         ignore_file = None
 
         saved_file_name = saved_file_name_format.format(image_fol)
