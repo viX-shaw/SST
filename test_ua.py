@@ -3,9 +3,20 @@ import cv2
 from data.ua_detection_data_reader import UADetectionDataReader
 import numpy as np
 from config.config import config
+from dis
 from utils.timer import Timer
 import argparse
 import os
+
+def str2bool(v):
+    if isinstance(v, bool):
+       return v
+    if v.lower() in ('yes', 'true', 't', 'y', '1'):
+        return True
+    elif v.lower() in ('no', 'false', 'f', 'n', '0'):
+        return False
+    else:
+        raise argparse.ArgumentTypeError('Boolean value expected.')
 
 parser = argparse.ArgumentParser(description='Single Shot Tracker Test')
 parser.add_argument('--version', default='v1', help='current version')
@@ -13,9 +24,9 @@ parser.add_argument('--ua_image_root', default=config['ua_image_root'], help='Im
 parser.add_argument('--ua_detection_root', default=config['ua_detection_root'], help='Detection Root')
 parser.add_argument('--ua_ignore_root', default=config['ua_ignore_root'], help='Ignore folder Root')
 parser.add_argument('--save_folder', default=config['save_folder'], help='save file folder Root')
-parser.add_argument('--show_image', type=bool, default=False, help='show image if true, or hidden')
-parser.add_argument('--save_video', type=bool, default=True, help='save video if true')
-parser.add_argument('--use_ignore', type=bool, default=False, help='use ignore or not')
+parser.add_argument('--show_image', type=str2bool, default=False, help='show image if true, or hidden')
+parser.add_argument('--save_video', type=str2bool, default=True, help='save video if true')
+parser.add_argument('--use_ignore', type=str2bool, default=False, help='use ignore or not')
 parser.add_argument('--detection_threshold', default=0.3, help='the threshold of detection')
 
 args = parser.parse_args()
