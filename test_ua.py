@@ -119,12 +119,14 @@ def test(choice=None, sequence_list=None):
         timer = Timer()
         for i, item in enumerate(reader):
             if item is None:
+                print("No item found")
                 continue
 
             img = item[0]
             det = item[1]
 
             if img is None or det is None or len(det) == 0:
+                print(if(img), if(len(det)))
                 continue
 
             if len(det) > config['max_object']:
