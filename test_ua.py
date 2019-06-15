@@ -40,7 +40,7 @@ def test(choice=None, sequence_list=None):
     if not os.path.exists(image_root) or not os.path.exists(detection_root) or not os.path.exists(ignore_root):
         raise FileNotFoundError('Pls check the file of parameters')
 
-    # print(isinstance(args.use_ignore, bool), args.use_ignore)
+    print(isinstance(args.save_video, bool), args.save_video)
     print('''
     ==============================
     =     Start Reading Files    =
@@ -134,6 +134,7 @@ def test(choice=None, sequence_list=None):
 
             h, w, _ = img.shape
             if vw is None and args.save_video:
+                print("Creating videowiter")
                 vw = cv2.VideoWriter(saved_video_name, cv2.VideoWriter_fourcc('M','J','P','G'), 10, (w, h))
 
             det[:, [2, 4]] /= float(w)
@@ -150,6 +151,7 @@ def test(choice=None, sequence_list=None):
                 cv2.waitKey(1)
 
             if args.save_video and not image_org is None:
+                print("Adding frame to vid")
                 vw.write(image_org)
 
             for t in tracker.tracks:
