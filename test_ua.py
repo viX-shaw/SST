@@ -119,7 +119,7 @@ def test(choice=None, sequence_list=None):
         result_str = saved_file_name
         timer = Timer()
         for i, item in enumerate(reader):
-            print("length", reader.length)
+            # print("length", reader.length)
             if item is None:
                 # print("No item found")
                 continue
