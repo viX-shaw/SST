@@ -89,7 +89,7 @@ def test(choice=None, sequence_list=None):
     saved_file_name_format = os.path.join(save_folder, '{}.txt')
     saved_video_name_format = os.path.join(save_folder, '{}.avi')
 
-    for image_fol in all_image_folders:
+    for i, image_fol in enumerate(all_image_folders):
         # image_folder_base_name = os.path.basename(image_folder)
         # i = ignore_file_base_name.index(image_folder_base_name)
         # ignore_file = all_ignore_files[i]
@@ -101,8 +101,8 @@ def test(choice=None, sequence_list=None):
         detection_file = image_fol+"/det/det.txt"
         ignore_file = "." 
 
-        saved_file_name = saved_file_name_format.format(image_fol)
-        saved_video_name = saved_video_name_format.format(image_fol)
+        saved_file_name = saved_file_name_format.format(i)
+        saved_video_name = saved_video_name_format.format(i)
         vw = None
         if not os.path.exists(image_folder) or not os.path.exists(detection_file) or not os.path.exists(ignore_file):
             continue
