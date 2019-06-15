@@ -126,8 +126,6 @@ def test(choice=None, sequence_list=None):
             det = item[1]
 
             if img is None or det is None or len(det) == 0:
-                # print(det)
-                print(img)
                 continue
 
             if len(det) > config['max_object']:

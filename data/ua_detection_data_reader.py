@@ -20,7 +20,7 @@ class UADetectionDataReader:
         self.image_folder = image_folder
         self.detection_file_name = detection_file_name
         self.ignore_file_name = ignore_file_name
-        self.image_format = os.path.join(self.image_folder, '{0:05d}.jpg')
+        self.image_format = os.path.join(self.image_folder, '{}.jpg')
         self.detection = pd.read_csv(self.detection_file_name, sep=',', header=None, dtype=datatype)
 
         # self.detection.iloc[:, 4] += self.detection.iloc[:, 2]
@@ -71,7 +71,7 @@ class UADetectionDataReader:
     def get_image_by_index(self, index):
         if index > len(self.detection_group_keys):
             return None
-        print("retrieving image from",self.image_format.format(index))
+        # print("retrieving image from",self.image_format.format(index))
         return cv2.imread(self.image_format.format(index))
 
     def __getitem__(self, item):
