@@ -151,7 +151,7 @@ def test(choice=None, sequence_list=None):
                 cv2.waitKey(1)
 
             if args.save_video:
-                print("Adding frame to vid")
+                # print("Adding frame to vid")
                 if image_org is None:
                     vw.write(img)
                 else:

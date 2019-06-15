@@ -58,7 +58,7 @@ class UADetectionDataReader:
         self.detection_group = self.detection.groupby(0)
         self.detection_group_keys = list(self.detection_group.indices.keys())
 
-        self.length = len(self)
+        self.length = len(os.listdir(image_folder))
     def __len__(self):
         return len(self.detection_group_keys)
 
