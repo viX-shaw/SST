@@ -114,6 +114,7 @@ def test(choice=None, sequence_list=None):
         tracker = SSTTracker()
         reader = UADetectionDataReader(image_folder, detection_file, ignore_file if use_ignore else None,
                                        args.detection_threshold)
+        break
         result = list()
         result_str = saved_file_name
         timer = Timer()
