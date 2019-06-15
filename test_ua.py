@@ -62,7 +62,7 @@ def test(choice=None, sequence_list=None):
     all_image_folders = sorted(
         [os.path.join(image_root, d) for d in sequences]
     )
-    print(all_image_folders)
+    # print(all_image_folders)
 
     # all_detection_files = [os.path.join(detection_root, f+'_Det_'+config['detector_name']+'.txt') for f in sequences_basename]
     all_detection_files = [os.path.join(detection_root, f) for f in os.listdir(detection_root)]
@@ -119,14 +119,14 @@ def test(choice=None, sequence_list=None):
         timer = Timer()
         for i, item in enumerate(reader):
             if item is None:
-                print("No item found")
+                # print("No item found")
                 continue
 
             img = item[0]
             det = item[1]
 
             if img is None or det is None or len(det) == 0:
-                print(det)
+                # print(det)
                 continue
 
             if len(det) > config['max_object']:

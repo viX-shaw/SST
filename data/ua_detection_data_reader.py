@@ -54,7 +54,7 @@ class UADetectionDataReader:
             self.detection = self.detection[np.logical_not(mask)]
 
         self.detection = self.detection[self.detection.iloc[:, 6] >= detection_threshold]
-
+        print(detection)
         self.detection_group = self.detection.groupby(0)
         self.detection_group_keys = list(self.detection_group.indices.keys())
 
@@ -65,6 +65,7 @@ class UADetectionDataReader:
     def get_detection_by_index(self, index):
         if index > len(self.detection_group_keys) or self.detection_group_keys.count(index) == 0:
             return None
+        print(self.detection_group.get_group(index).values)
         return self.detection_group.get_group(index).values
 
     def get_image_by_index(self, index):
