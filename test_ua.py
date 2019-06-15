@@ -141,7 +141,7 @@ def test(choice=None, sequence_list=None):
 
             timer.tic()
             image_org = tracker.update(img, det[:, 2:6], args.show_image, i)
-            print("Image Update", image_org)
+            # print("Image Update", image_org)
             timer.toc()
             if i % 20 == 0:
                 print('{}:{}, {}, {}, {}\r'.format(saved_file_name, i, int(i * 100 / reader.length), choice_str, args.detection_threshold))
@@ -150,9 +150,12 @@ def test(choice=None, sequence_list=None):
                 cv2.imshow('res', image_org)
                 cv2.waitKey(1)
 
-            if args.save_video and not image_org is None:
+            if args.save_video:
                 print("Adding frame to vid")
-                vw.write(image_org)
+                if image_org is None:
+                    vw.write(img)
+                else:
+                    vw.write(image_org)
 
             for t in tracker.tracks:
                 n = t.nodes[-1]
@@ -176,7 +179,7 @@ def test(choice=None, sequence_list=None):
 
 if __name__ == '__main__':
     c = TrackerConfig.get_ua_choice()
-    threshold = [i*0.1 for i in range(11)]
+    threshold = [0.3] #[i*0.1 for i in range(11)]
     save_folder = args.save_folder
     if not os.path.exists(args.save_folder):
         os.mkdir(args.save_folder)
