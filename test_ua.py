@@ -50,8 +50,11 @@ def test(choice=None, sequence_list=None):
         [os.path.join(image_root, d) for d in sequences]
     )
 
-    all_detection_files = [os.path.join(detection_root, f+'_Det_'+config['detector_name']+'.txt') for f in sequences_basename]
-    all_ignore_files = [os.path.join(ignore_root, f+'_IgR.txt') for f in sequences_basename]
+    # all_detection_files = [os.path.join(detection_root, f+'_Det_'+config['detector_name']+'.txt') for f in sequences_basename]
+    all_detection_files = [os.path.join(detection_root, f) for f in os.listdir(detection_root)]
+    # all_ignore_files = [os.path.join(ignore_root, f+'_IgR.txt') for f in sequences_basename]
+    all_ignore_files = [os.path.join(ignore_root, f) for f in os.listdir(ignore_root)]
+
     # all_detection_files = sorted(
     #     [os.path.join(detection_root, f) for f in os.listdir(detection_root) if 'MVI_' in f and os.path.basename(f) in sequences_basename]
     # )
@@ -74,16 +77,20 @@ def test(choice=None, sequence_list=None):
     saved_file_name_format = os.path.join(save_folder, '{}.txt')
     saved_video_name_format = os.path.join(save_folder, '{}.avi')
 
-    for image_folder in all_image_folders:
-        image_folder_base_name = os.path.basename(image_folder)
-        i = ignore_file_base_name.index(image_folder_base_name)
-        ignore_file = all_ignore_files[i]
+    for image_fol in all_image_folders:
+        # image_folder_base_name = os.path.basename(image_folder)
+        # i = ignore_file_base_name.index(image_folder_base_name)
+        # ignore_file = all_ignore_files[i]
 
-        j = detection_file_base_name.index(image_folder_base_name)
-        detection_file = all_detection_files[j]
+        # j = detection_file_base_name.index(image_folder_base_name)
+        # detection_file = all_detection_files[j]
 
-        saved_file_name = saved_file_name_format.format(image_folder_base_name)
-        saved_video_name = saved_video_name_format.format(image_folder_base_name)
+        image_folder = image_fol+"/img1"
+        detection_file = image_fol+"/det"
+        ignore_file = None
+
+        saved_file_name = saved_file_name_format.format(image_fol)
+        saved_video_name = saved_video_name_format.format(image_fol)
         vw = None
         if not os.path.exists(image_folder) or not os.path.exists(detection_file) or not os.path.exists(ignore_file):
             continue
@@ -160,7 +167,8 @@ if __name__ == '__main__':
         args.save_folder = os.path.join(save_folder, '{0:0.1f}'.format(t))
         if not os.path.exists(args.save_folder):
             os.mkdir(args.save_folder)
-        test(c, './config/ua_experienced.txt')
+        # test(c, './config/ua_experienced.txt')
+        test(c)
 
     # for i in range(10):
     #     #     c = all_choices[-i]
