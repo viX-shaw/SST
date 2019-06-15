@@ -73,7 +73,7 @@ class UADetectionDataReader:
             return None
         # print("retrieving image from",self.image_format.format(index))
         # return cv2.imread(self.image_format.format(index))
-        return cv2.imread(self.image_format.format(self.detection_group_keys[index])
+        return cv2.imread(self.image_format.format(self.detection_group_keys[index]))
 
     def __getitem__(self, item):
         if item >= self.length:
