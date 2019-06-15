@@ -25,6 +25,7 @@ def test(choice=None, sequence_list=None):
     detection_root = args.ua_detection_root
     ignore_root = args.ua_ignore_root
     save_folder = args.save_folder
+    use_ignore = args.use_ignore 
 
     if not os.path.exists(image_root) or not os.path.exists(detection_root) or not os.path.exists(ignore_root):
         raise FileNotFoundError('Pls check the file of parameters')
@@ -88,7 +89,7 @@ def test(choice=None, sequence_list=None):
 
         image_folder = image_fol+"/img1"
         detection_file = image_fol+"/det/det.txt"
-        ignore_file = "."
+        ignore_file = "." if use_ignore else None
 
         saved_file_name = saved_file_name_format.format(image_fol)
         saved_video_name = saved_video_name_format.format(image_fol)
@@ -99,7 +100,7 @@ def test(choice=None, sequence_list=None):
         print('processing ', image_folder, '>>>>>>>>>>>>>>>>>>')
 
         tracker = SSTTracker()
-        reader = UADetectionDataReader(image_folder, detection_file, ignore_file if args.use_ignore else None,
+        reader = UADetectionDataReader(image_folder, detection_file, ignore_file,
                                        args.detection_threshold)
         result = list()
         result_str = saved_file_name
