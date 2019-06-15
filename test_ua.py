@@ -40,7 +40,7 @@ def test(choice=None, sequence_list=None):
     if not os.path.exists(image_root) or not os.path.exists(detection_root) or not os.path.exists(ignore_root):
         raise FileNotFoundError('Pls check the file of parameters')
 
-    print(isinstance(args.use_ignore, bool), args.use_ignore)
+    # print(isinstance(args.use_ignore, bool), args.use_ignore)
     print('''
     ==============================
     =     Start Reading Files    =
@@ -51,6 +51,7 @@ def test(choice=None, sequence_list=None):
         sequences = np.loadtxt(sequence_list, dtype='str')
     else:
         sequences = os.listdir(image_root)
+    
     sequences_basename = [os.path.basename(s) for s in sequences]
     # print(sequences_basename)
     # validation
@@ -61,6 +62,7 @@ def test(choice=None, sequence_list=None):
     all_image_folders = sorted(
         [os.path.join(image_root, d) for d in sequences]
     )
+    print(all_image_folders)
 
     # all_detection_files = [os.path.join(detection_root, f+'_Det_'+config['detector_name']+'.txt') for f in sequences_basename]
     all_detection_files = [os.path.join(detection_root, f) for f in os.listdir(detection_root)]
