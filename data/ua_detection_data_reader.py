@@ -27,6 +27,7 @@ class UADetectionDataReader:
         # self.detection.iloc[:, 5] += self.detection.iloc[:, 3]
 
         # read ignore file
+        print("Ignore file name", ignore_file_name)
         mask = None
         self.ignore = None
         if ignore_file_name is not None and os.stat(self.ignore_file_name).st_size > 0:
