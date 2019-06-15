@@ -127,6 +127,7 @@ def test(choice=None, sequence_list=None):
 
             if img is None or det is None or len(det) == 0:
                 # print(det)
+                print(img)
                 continue
 
             if len(det) > config['max_object']:
@@ -142,6 +143,7 @@ def test(choice=None, sequence_list=None):
 
             timer.tic()
             image_org = tracker.update(img, det[:, 2:6], args.show_image, i)
+            print("Image Update", image_org)
             timer.toc()
             if i % 20 == 0:
                 print('{}:{}, {}, {}, {}\r'.format(saved_file_name, i, int(i * 100 / reader.length), choice_str, args.detection_threshold))
