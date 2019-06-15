@@ -30,7 +30,7 @@ def test(choice=None, sequence_list=None):
     if not os.path.exists(image_root) or not os.path.exists(detection_root) or not os.path.exists(ignore_root):
         raise FileNotFoundError('Pls check the file of parameters')
 
-    print(args.use_ignore)
+    print(isinstance(args.use_ignore, bool))
     print('''
     ==============================
     =     Start Reading Files    =
