@@ -3,7 +3,6 @@ import cv2
 from data.ua_detection_data_reader import UADetectionDataReader
 import numpy as np
 from config.config import config
-from dis
 from utils.timer import Timer
 import argparse
 import os
