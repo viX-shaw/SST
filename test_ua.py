@@ -13,9 +13,9 @@ parser.add_argument('--ua_image_root', default=config['ua_image_root'], help='Im
 parser.add_argument('--ua_detection_root', default=config['ua_detection_root'], help='Detection Root')
 parser.add_argument('--ua_ignore_root', default=config['ua_ignore_root'], help='Ignore folder Root')
 parser.add_argument('--save_folder', default=config['save_folder'], help='save file folder Root')
-parser.add_argument('--show_image', default=False, help='show image if true, or hidden')
-parser.add_argument('--save_video', default=True, help='save video if true')
-parser.add_argument('--use_ignore', default=False, help='use ignore or not')
+parser.add_argument('--show_image', type=bool, default=False, help='show image if true, or hidden')
+parser.add_argument('--save_video', type=bool, default=True, help='save video if true')
+parser.add_argument('--use_ignore', type=bool, default=False, help='use ignore or not')
 parser.add_argument('--detection_threshold', default=0.3, help='the threshold of detection')
 
 args = parser.parse_args()
