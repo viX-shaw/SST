@@ -87,7 +87,7 @@ def test(choice=None, sequence_list=None):
 
         image_folder = image_fol+"/img1"
         detection_file = image_fol+"/det/det.txt"
-        ignore_file = None
+        ignore_file = "."
 
         saved_file_name = saved_file_name_format.format(image_fol)
         saved_video_name = saved_video_name_format.format(image_fol)
