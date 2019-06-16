@@ -130,7 +130,7 @@ def test(choice=None, sequence_list=None):
             det = item[1]
 
             h, w, _ = img.shape
-            if vw is None and img != None and args.save_video:
+            if vw is None and img is not None and args.save_video:
                 print("Creating videowiter")
                 vw = cv2.VideoWriter(saved_video_name, cv2.VideoWriter_fourcc('M','J','P','G'), 10, (w, h))
 
