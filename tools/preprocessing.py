@@ -54,7 +54,7 @@ def non_max_suppression(boxes, max_bbox_overlap, scores=None):
     while len(idxs) > 0:
         last = len(idxs) - 1
         i = idxs[last]
-        pick.append(i.tolist())
+        pick.append(i)
 
         xx1 = np.maximum(x1[i], x1[idxs[:last]])
         yy1 = np.maximum(y1[i], y1[idxs[:last]])
