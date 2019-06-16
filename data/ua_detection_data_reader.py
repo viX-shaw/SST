@@ -65,10 +65,12 @@ class UADetectionDataReader:
         return len(os.listdir(image_folder))
 
     def get_detection_by_index(self, index):
-        # if index > len(self.detection_group_keys) or self.detection_group_keys.count(index) == 0:
+        # if self.detection_group_keys.count(index) == 0:
         #     return None
         # print(self.detection_group.get_group(index).values)
         # return self.detection_group.get_group(self.detection_group_keys[index]).values
+        if index not in self.detection_group_keys:
+            return None
         return self.detection_group.get_group(index).values
 
     def get_image_by_index(self, index):
