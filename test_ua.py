@@ -6,6 +6,7 @@ from config.config import config
 from utils.timer import Timer
 import argparse
 import os
+from tools import preprocessing
 
 def str2bool(v):
     if isinstance(v, bool):
@@ -27,6 +28,7 @@ parser.add_argument('--show_image', type=str2bool, default=False, help='show ima
 parser.add_argument('--save_video', type=str2bool, default=True, help='save video if true')
 parser.add_argument('--use_ignore', type=str2bool, default=False, help='use ignore or not')
 parser.add_argument('--detection_threshold', default=0.3, help='the threshold of detection')
+parser.add_argument('--nms_max_overlap', default=0.3, help='maximum overlap allowd b/w detections')
 
 args = parser.parse_args()
 
@@ -126,6 +128,11 @@ def test(choice=None, sequence_list=None):
 
             img = item[0]
             det = item[1]
+
+            print(det)
+
+            indices = preprocessing.non_max_suppression(det, args.nms_max_overlap)
+            det = [det[y] for y in indices]
 
             if img is None or det is None or len(det) == 0:
                 continue
