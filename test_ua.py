@@ -132,7 +132,7 @@ def test(choice=None, sequence_list=None):
             print(det)
 
             indices = preprocessing.non_max_suppression(det, args.nms_max_overlap)
-            det = [det[y] for y in indices]
+            det = [det[y] for y in indices] 
 
             if img is None or det is None or len(det) == 0:
                 continue
