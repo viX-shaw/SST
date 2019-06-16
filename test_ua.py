@@ -129,8 +129,14 @@ def test(choice=None, sequence_list=None):
             img = item[0]
             det = item[1]
 
+            h, w, _ = img.shape
+            if vw is None and img != None and args.save_video:
+                print("Creating videowiter")
+                vw = cv2.VideoWriter(saved_video_name, cv2.VideoWriter_fourcc('M','J','P','G'), 10, (w, h))
 
             if img is None or det is None or len(det) == 0:
+                if img is not None:
+                    vw.write(img)
                 continue
 
             indices = preprocessing.non_max_suppression(det[:, [2,3,4,5]], args.nms_max_overlap)
@@ -139,10 +145,6 @@ def test(choice=None, sequence_list=None):
             if len(det) > config['max_object']:
                 det = det[:config['max_object'], :]
 
-            h, w, _ = img.shape
-            if vw is None and args.save_video:
-                print("Creating videowiter")
-                vw = cv2.VideoWriter(saved_video_name, cv2.VideoWriter_fourcc('M','J','P','G'), 10, (w, h))
 
             det[:, [2, 4]] /= float(w)
             det[:, [3, 5]] /= float(h)

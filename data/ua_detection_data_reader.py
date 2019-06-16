@@ -58,22 +58,25 @@ class UADetectionDataReader:
         self.detection_group = self.detection.groupby(0)
         self.detection_group_keys = list(self.detection_group.indices.keys())
 
-        self.length = len(self)
+        # self.length = len(self)
+        self.length = len(os.listdir(image_folder))
     def __len__(self):
-        return len(self.detection_group_keys)
+        # return len(self.detection_group_keys)
+        return len(os.listdir(image_folder))
 
     def get_detection_by_index(self, index):
         if index > len(self.detection_group_keys) or self.detection_group_keys.count(index) == 0:
             return None
         # print(self.detection_group.get_group(index).values)
-        return self.detection_group.get_group(self.detection_group_keys[index]).values
+        # return self.detection_group.get_group(self.detection_group_keys[index]).values
+        return self.detection_group.get_group(index).values
 
     def get_image_by_index(self, index):
         if index > len(self.detection_group_keys):
             return None
         # print("retrieving image from",self.image_format.format(index))
-        # return cv2.imread(self.image_format.format(index))
-        return cv2.imread(self.image_format.format(self.detection_group_keys[index]))
+        return cv2.imread(self.image_format.format(index))
+        # return cv2.imread(self.image_format.format(self.detection_group_keys[index]))
 
     def __getitem__(self, item):
         if item >= self.length:
