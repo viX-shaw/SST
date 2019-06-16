@@ -212,7 +212,7 @@ def init_test_ua():
     config['ua_image_root'] = '/media/ssm/seagate/dataset/UA-DETRAC/Insight-MVT_Annotation_Test'
     config['ua_detection_root'] = '/media/ssm/seagate/dataset/UA-DETRAC/EB'
     config['ua_ignore_root'] = '/media/ssm/seagate/dataset/UA-DETRAC/DETRAC-MOT-toolkit/evaluation/igrs'
-    config['resume'] = '/content/sst300_0712_54000.pth'
+    config['resume'] = '/content/sst300_0712_44000.pth'
     config['detector_name'] = 'EB'
     config['batch_size'] = 1
     config['min_gap_frame'] = 0
