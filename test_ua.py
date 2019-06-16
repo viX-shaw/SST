@@ -132,12 +132,10 @@ def test(choice=None, sequence_list=None):
 
             if img is None or det is None or len(det) == 0:
                 continue
-            print(det)
 
             indices = preprocessing.non_max_suppression(det[:, [2,3,4,5]], args.nms_max_overlap)
             det = det[indices, :] 
 
-            print(det)
             if len(det) > config['max_object']:
                 det = det[:config['max_object'], :]
 
