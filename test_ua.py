@@ -28,7 +28,7 @@ parser.add_argument('--show_image', type=str2bool, default=False, help='show ima
 parser.add_argument('--save_video', type=str2bool, default=True, help='save video if true')
 parser.add_argument('--use_ignore', type=str2bool, default=False, help='use ignore or not')
 parser.add_argument('--detection_threshold', default=0.3, help='the threshold of detection')
-parser.add_argument('--nms_max_overlap', default=0.3, help='maximum overlap allowd b/w detections')
+parser.add_argument('--nms_max_overlap', default=0.6, help='maximum overlap allowd b/w detections')
 
 args = parser.parse_args()
 
@@ -132,7 +132,7 @@ def test(choice=None, sequence_list=None):
             h, w, _ = img.shape
             if vw is None and img is not None and args.save_video:
                 print("Creating videowiter")
-                vw = cv2.VideoWriter(saved_video_name, cv2.VideoWriter_fourcc('M','J','P','G'), 10, (w, h))
+                vw = cv2.VideoWriter(saved_video_name, cv2.VideoWriter_fourcc('M','J','P','G'), 24, (w, h))
 
             if img is None or det is None or len(det) == 0:
                 if img is not None:
